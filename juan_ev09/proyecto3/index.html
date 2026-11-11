@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TaskFlow – Panel de actividades y tareas</title>
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="header">
+    <a class="brand" href="#inicio">
+      <img src="img/logo.svg" alt="Logo de TaskFlow" width="36" height="36">
+      <span>TaskFlow</span>
+    </a>
+    <nav class="nav" aria-label="Menú principal">
+      <a href="#inicio">Inicio</a>
+      <a href="#registro">Registrar</a>
+      <a href="#actividades">Actividades</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="inicio" class="section hero">
+      <h1>Panel de actividades y tareas</h1>
+      <p>Organiza las actividades pendientes de tu equipo: registra, filtra y actualiza su estado.</p>
+      <div class="cards">
+        <article class="card"><h2>Total</h2><p class="num" id="totalTareas">0</p></article>
+        <article class="card pendiente"><h2>Pendientes</h2><p class="num" id="totalPendientes">0</p></article>
+        <article class="card proceso"><h2>En proceso</h2><p class="num" id="totalProceso">0</p></article>
+        <article class="card completada"><h2>Completadas</h2><p class="num" id="totalCompletadas">0</p></article>
+      </div>
+    </section>
+
+    <section id="registro" class="section">
+      <h2>Registrar actividad</h2>
+      <form id="formTarea" class="form" novalidate>
+        <div class="field">
+          <label for="nombre">Nombre de la actividad</label>
+          <input type="text" id="nombre" placeholder="Ej: Preparar informe mensual">
+          <small class="error" id="errNombre"></small>
+        </div>
+        <div class="field">
+          <label for="responsable">Responsable</label>
+          <input type="text" id="responsable" placeholder="Ej: Laura Gómez">
+          <small class="error" id="errResponsable"></small>
+        </div>
+        <div class="field full">
+          <label for="descripcion">Descripción</label>
+          <textarea id="descripcion" rows="3" placeholder="Describe brevemente la actividad"></textarea>
+          <small class="error" id="errDescripcion"></small>
+        </div>
+        <div class="field">
+          <label for="prioridad">Prioridad</label>
+          <select id="prioridad">
+            <option value="Alta">Alta</option>
+            <option value="Media" selected>Media</option>
+            <option value="Baja">Baja</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="fecha">Fecha límite</label>
+          <input type="date" id="fecha">
+          <small class="error" id="errFecha"></small>
+        </div>
+        <div class="field">
+          <label for="estado">Estado</label>
+          <select id="estado">
+            <option value="Pendiente" selected>Pendiente</option>
+            <option value="En proceso">En proceso</option>
+            <option value="Completada">Completada</option>
+          </select>
+        </div>
+        <div class="field actions">
+          <button type="submit" class="btn primary">Agregar actividad</button>
+        </div>
+      </form>
+    </section>
+
+    <section id="actividades" class="section">
+      <h2>Listado de actividades</h2>
+      <div class="filters">
+        <div class="field">
+          <label for="filtroEstado">Filtrar por estado</label>
+          <select id="filtroEstado">
+            <option value="Todos">Todos</option>
+            <option value="Pendiente">Pendiente</option>
+            <option value="En proceso">En proceso</option>
+            <option value="Completada">Completada</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="filtroPrioridad">Filtrar por prioridad</label>
+          <select id="filtroPrioridad">
+            <option value="Todas">Todas</option>
+            <option value="Alta">Alta</option>
+            <option value="Media">Media</option>
+            <option value="Baja">Baja</option>
+          </select>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Nombre</th><th>Responsable</th><th>Prioridad</th><th>Fecha</th><th>Estado</th><th>Acciones</th></tr>
+          </thead>
+          <tbody id="listaTareas"></tbody>
+        </table>
+      </div>
+      <p id="mensajeVacio" class="empty" hidden>No hay actividades para mostrar.</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>TaskFlow · Mini proyecto Front-End · SENA – ADSO</p>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
